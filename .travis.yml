@@ -1,8 +1,12 @@
 language: node_js
 node_js:
+  - 16.15.1
   - 13.8.0
 
-script: npm run build && npm run test
+before_script:
+  - npm i --no-save --prefix /tmp/tsc484 typescript@4.8.4
+
+script: npm run build && /tmp/tsc484/node_modules/.bin/tsc -p tsconfig.json && npm run test
 
 notifications:
   email:
